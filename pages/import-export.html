@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <base href="../" />
+  <title>Импорт / Экспорт - Школа 7 Адм</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+<a class="skip-link" href="#main">Перейти к содержимому</a>
+
+<header class="topbar" role="banner">
+  <div class="container topbar__inner">
+    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Меню" aria-expanded="false">☰</button>
+    <div class="brand">
+      <div class="brand__logo" aria-hidden="true"><img src="/images/sch7.png" alt="Логотип школы"/></div>
+      <div class="brand__text">
+        <div class="brand__title">МБОУ «Школа №7»</div>
+      </div>
+      <button class="theme-toggle" id="themeToggle" aria-label="Переключить тему"></button>
+    </div>
+      <div class="user">
+         
+        <div class="user__meta">
+          <div class="user__name">Пользователь</div>
+          <div class="user__role">Роль: —</div>
+        </div>
+        <a class="btn btn--ghost" href="/pages/login.html">Выйти</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="sidebar" role="navigation" aria-label="Навигация">
+    <div class="sidebar__section">
+      <div class="sidebar__caption">Основное</div>
+      <a class="navlink" href="/index.html">Панель</a>
+      <a class="navlink" href="/pages/students.html">Учащиеся</a>
+      <a class="navlink" href="/pages/movement.html">Движение</a>
+      <a class="navlink" href="/pages/reports.html">Отчеты</a>
+    </div>
+    <div class="sidebar__section">
+      <div class="sidebar__caption">Данные</div>
+      <a class="navlink is-active" href="/pages/import-export.html">Импорт / Экспорт</a>
+      <a class="navlink" href="/pages/archive.html">Архив</a>
+    </div>
+    <div class="sidebar__section">
+      <div class="sidebar__caption">Безопасность</div>
+      <a class="navlink" href="/pages/login.html">Страница входа</a>
+      <a class="navlink" href="/pages/auth-log.html">Журнал входов</a>
+    </div>
+    <div class="sidebar__section" id="adminSection" style="display: none;">
+      <div class="sidebar__caption">Администрирование</div>
+      <a class="navlink" href="pages/users.html">👥 Управление пользователями</a>
+    </div>
+  </aside>
+
+  <main id="main" class="content" role="main">
+    <section class="panel">
+      <div class="panel__head">
+        <h1 class="panel__title">Импорт / Экспорт</h1>
+        <div class="panel__subtitle">
+          Импорт из Excel/CSV для массового ввода; экспорт в Excel/CSV для отчетности и резервных копий. 
+        </div>
+      </div>
+
+      <div class="grid grid--2">
+        <section class="card">
+          <div class="card__head"><h2 class="card__title">Импорт</h2></div>
+          <div class="card__body">
+            <form class="form" id="importForm" enctype="multipart/form-data">
+              <div class="field">
+                <label for="imp_file">Файл (Excel/CSV)</label>
+                <input id="imp_file" name="file" type="file" />
+              </div>
+
+              <div class="field">
+                <label for="imp_mode">Режим</label>
+                <select id="imp_mode" name="mode">
+                  <option value="mass_enroll">Массовое зачисление</option>
+                  <option value="upsert_students">Обновление/добавление карточек</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="imp_year">Учебный год (если нужен)</label>
+                <select id="imp_year" name="school_year">
+                  <option value="">—</option>
+                </select>
+              </div>
+
+              <button class="btn btn--primary" type="submit">Запустить импорт</button>
+            </form>
+
+            <div class="note">
+              Сервер может возвращать “протокол импорта”: сколько строк добавлено, сколько с ошибками, и список ошибок. 
+            </div>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="card__head"><h2 class="card__title">Экспорт</h2></div>
+          <div class="card__body">
+            <form class="form" id="exportForm">
+              <div class="field">
+                <label for="exp_what">Что экспортировать</label>
+                <select id="exp_what" name="what">
+                  <option value="students">База учащихся</option>
+                  <option value="reports">Отчет (по параметрам)</option>
+                  <option value="archive">Архив отчисленных</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="exp_format">Формат</label>
+                <select id="exp_format" name="format">
+                  <option value="csv">CSV</option>
+                  <option value="xlsx">Excel</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="exp_scope">Фильтр (опционально)</label>
+                <input id="exp_scope" name="scope" type="text" placeholder="Напр.: класс=5А&год=2025/26" />
+              </div>
+
+              <button class="btn btn--secondary" type="submit">Скачать</button>
+            </form>
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
+</div>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<script src="/scripts/theme.js"></script>
+<script src="/scripts/auth.js"></script>
+<script src="/scripts/import-export.js"></script>
+<script src="/scripts/mobile-menu.js"></script>
+<script src="/scripts/role-menu.js"></script>
+</body>
+</html>

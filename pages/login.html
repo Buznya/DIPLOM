@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <base href="../" />
+  <title>Вход - Школа 7 Адм</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+<a class="skip-link" href="#main">Перейти к содержимому</a>
+
+<header class="topbar" role="banner">
+  <div class="container topbar__inner">
+    <div class="brand">
+      <div class="brand__logo" aria-hidden="true"><img src="images/sch7.png" alt="Логотип школы"/></div>
+      <div class="brand__text">
+        <div class="brand__title">МБОУ «Школа №7»</div>
+      </div>
+      <button class="theme-toggle" id="themeToggle" aria-label="Переключить тему"></button>
+      <div class="user">
+         
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main" class="content" role="main">
+  <section class="panel">
+    <section class="card card--center">
+      <div class="card__head"><h2 class="card__title">Авторизация</h2></div>
+      <div class="card__body">
+        <form class="form">
+          <div class="field">
+            <label for="login">Логин</label>
+            <input id="login" name="login" type="text" autocomplete="username" />
+          </div>
+
+          <div class="field">
+            <label for="password">Пароль</label>
+            <input id="password" name="password" type="password" autocomplete="current-password" />
+          </div>
+
+          <div class="form__actions form__actions--stack">
+            <button class="btn btn--primary btn--block" type="submit">Войти</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </section>
+</main>
+<script src="/scripts/theme.js"></script>
+<script src="/scripts/auth.js"></script>
+</body>
+</html>

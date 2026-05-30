@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <base href="../" />
+  <title>Движение - Школа 7 Адм</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+<a class="skip-link" href="#main">Перейти к содержимому</a>
+
+<header class="topbar" role="banner">
+  <div class="container topbar__inner">
+    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Меню" aria-expanded="false">☰</button>
+    <div class="brand">
+      <div class="brand__logo" aria-hidden="true"><img src="/images/sch7.png" alt="Логотип школы"/></div>
+      <div class="brand__text">
+        <div class="brand__title">МБОУ «Школа №7»</div>
+      </div>
+      <button class="theme-toggle" id="themeToggle" aria-label="Переключить тему"></button>
+    </div>
+
+      <div class="user">
+         
+        <div class="user__meta">
+          <div class="user__name">Пользователь</div>
+          <div class="user__role">Роль: —</div>
+        </div>
+        <a class="btn btn--ghost" href="/pages/login.html">Выйти</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="sidebar" role="navigation" aria-label="Навигация">
+    <div class="sidebar__section">
+      <div class="sidebar__caption">Основное</div>
+      <a class="navlink" href="/index.html">Панель</a>
+      <a class="navlink" href="/pages/students.html">Учащиеся</a>
+      <a class="navlink is-active" href="/pages/movement.html">Движение</a>
+      <a class="navlink" href="/pages/reports.html">Отчеты</a>
+    </div>
+    <div class="sidebar__section">
+      <div class="sidebar__caption">Данные</div>
+      <a class="navlink" href="/pages/import-export.html">Импорт / Экспорт</a>
+      <a class="navlink" href="/pages/archive.html">Архив</a>
+    </div>
+    <div class="sidebar__section">
+      <div class="sidebar__caption">Безопасность</div>
+      <a class="navlink" href="/pages/login.html">Страница входа</a>
+      <a class="navlink" href="/pages/auth-log.html">Журнал входов</a>
+    </div>
+    <div class="sidebar__section" id="adminSection" style="display: none;">
+      <div class="sidebar__caption">Администрирование</div>
+      <a class="navlink" href="pages/users.html">👥 Управление пользователями</a>
+    </div>
+  </aside>
+
+  <main id="main" class="content" role="main">
+    <section class="panel">
+      <div class="panel__head">
+        <h1 class="panel__title">Движение контингента</h1>
+        <div class="panel__subtitle">
+          Оформление зачисления, перевода и отчисления с приказом/датой и изменением статуса. 
+        </div>
+      </div>
+
+      <div class="grid grid--3">
+        <section class="card">
+          <div class="card__head"><h2 class="card__title">Зачисление</h2></div>
+          <div class="card__body">
+            <form class="form" id="enrollForm">
+              <div class="field">
+                <label for="enroll_student">Учащийся (ID)</label>
+                <input id="enroll_student" name="student_id" type="text" placeholder="Напр.: U-000231" />
+              </div>
+              <div class="field">
+                <label for="enroll_order">Приказ о зачислении</label>
+                <input id="enroll_order" name="order_info" type="text" placeholder="№ и дата" />
+              </div>
+              <div class="field">
+                <label for="enroll_date">Дата зачисления</label>
+                <input id="enroll_date" name="enroll_date" type="date" />
+              </div>
+              <div class="field">
+                <label for="enroll_class">Класс</label>
+                <select id="enroll_class" name="class_id">
+                  <option value="">—</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="enroll_year">Учебный год</label>
+                <select id="enroll_year" name="school_year">
+                  <option value="">—</option>
+                </select>
+              </div>
+
+              <button class="btn btn--primary" type="submit">Оформить</button>
+            </form>
+            <p class="muted">После операции статус учащегося должен обновляться в БД.</p>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="card__head"><h2 class="card__title">Перевод</h2></div>
+          <div class="card__body">
+            <form class="form" id="transferForm">
+              <div class="field">
+                <label for="tr_student">Учащийся (ID)</label>
+                <input id="tr_student" name="student_id" type="text" placeholder="Напр.: U-000231" />
+              </div>
+              <div class="field">
+                <label for="tr_order">Приказ о переводе</label>
+                <input id="tr_order" name="order_info" type="text" placeholder="№ и дата" />
+              </div>
+              <div class="field">
+                <label for="tr_date">Дата перевода</label>
+                <input id="tr_date" name="transfer_date" type="date" />
+              </div>
+              <div class="field">
+                <label for="tr_from">Из класса</label>
+                <select id="tr_from" name="from_class_id">
+                  <option value="">—</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="tr_to">В класс</label>
+                <select id="tr_to" name="to_class_id">
+                  <option value="">—</option>
+                </select>
+              </div>
+
+              <button class="btn btn--primary" type="submit">Оформить</button>
+            </form>
+            <p class="muted">История переводов должна сохраняться отдельными записями.</p>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="card__head"><h2 class="card__title">Отчисление</h2></div>
+          <div class="card__body">
+            <form class="form" id="expelForm">
+              <div class="field">
+                <label for="ex_student">Учащийся (ID)</label>
+                <input id="ex_student" name="student_id" type="text" placeholder="Напр.: U-000231" />
+              </div>
+              <div class="field">
+                <label for="ex_order">Приказ об отчислении</label>
+                <input id="ex_order" name="order_info" type="text" placeholder="№ и дата" />
+              </div>
+              <div class="field">
+                <label for="ex_date">Дата отчисления</label>
+                <input id="ex_date" name="expel_date" type="date" />
+              </div>
+              <div class="field">
+                <label for="ex_reason">Причина</label>
+                <select id="ex_reason" name="reason">
+                  <option value="">—</option>
+                  <option value="finish">Окончание обучения</option>
+                  <option value="transfer">Перевод в другую школу</option>
+                  <option value="other">Иные причины</option>
+                </select>
+              </div>
+
+              <button class="btn btn--danger" type="submit">Оформить</button>
+            </form>
+            <p class="muted">Отчисленные должны отображаться в “Архиве”.</p>
+          </div>
+        </section>
+      </div>
+
+      <section class="card">
+        <div class="card__head card__head--split">
+          <h2 class="card__title">Журнал движения</h2>
+          <div class="toolbar">
+            <button class="btn btn--secondary" type="button">Экспорт CSV</button>
+            <button class="btn btn--secondary" type="button">Печать</button>
+          </div>
+        </div>
+
+        <div class="card__body">
+          <form class="form form--filters">
+            <div class="form__row">
+              <div class="field">
+                <label for="mv_query">Фильтр</label>
+                <input id="mv_query" type="search" placeholder="ID/ФИО/приказ" />
+              </div>
+              <div class="field">
+                <label for="mv_type">Тип</label>
+                <select id="mv_type">
+                  <option value="">Все</option>
+                  <option value="enroll">зачисление</option>
+                  <option value="transfer">перевод</option>
+                  <option value="expel">отчисление</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="mv_from">Период с</label>
+                <input id="mv_from" type="date" />
+              </div>
+              <div class="field">
+                <label for="mv_to">Период по</label>
+                <input id="mv_to" type="date" />
+              </div>
+            </div>
+            <div class="form__actions">
+              <button class="btn btn--primary" type="submit">Применить</button>
+              <button class="btn btn--ghost" type="reset">Сброс</button>
+            </div>
+          </form>
+
+          <div class="table-wrap" role="region" aria-label="Журнал движения" tabindex="0">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Дата</th>
+                  <th>Тип</th>
+                  <th>Учащийся (ID)</th>
+                  <th>Приказ</th>
+                  <th>Детали</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- тут данные которые из бд грузятся -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </section>
+  </main>
+</div>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<script src="/scripts/theme.js"></script>
+<script src="/scripts/auth.js"></script>
+<script src="/scripts/movement.js"></script>
+<script src="/scripts/mobile-menu.js"></script>
+<script src="/scripts/role-menu.js"></script>
+</body>
+</html>

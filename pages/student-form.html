@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <base href="../" />
+  <title>Карточка учащегося - Школа 7 Адм</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+<a class="skip-link" href="#main">Перейти к содержимому</a>
+
+<header class="topbar" role="banner">
+  <div class="container topbar__inner">
+    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Меню" aria-expanded="false">☰</button>
+    <div class="brand">
+      <div class="brand__logo" aria-hidden="true"><img src="images/sch7.png" alt="Логотип школы"/></div>
+      <div class="brand__text">
+        <div class="brand__title">МБОУ «Школа №7»</div>
+      </div>
+      <button class="theme-toggle" id="themeToggle" aria-label="Переключить тему"></button>
+    </div>
+    <div class="topbar__actions">
+       
+      <a class="btn btn--ghost" href="/pages/students.html">← К списку</a>
+    </div>
+  </div>
+</header>
+
+<main id="main" class="content" role="main">
+  <section class="panel">
+    <div class="panel__head">
+      <h1 class="panel__title">Карточка учащегося</h1>
+      <div class="panel__subtitle">Персональные данные + данные об обучении + статус.</div>
+    </div>
+
+    <section class="card">
+      <div class="card__head card__head--split">
+        <h2 class="card__title">Данные</h2>
+        <div class="toolbar">
+          <button class="btn btn--secondary" type="button">Печать</button>
+          <button class="btn btn--danger" type="button">Удалить</button>
+        </div>
+      </div>
+
+      <div class="card__body">
+        <form class="form">
+          <div class="form__row">
+            <div class="field">
+              <label for="st_id">Уникальный ID</label>
+              <input id="st_id" type="text" placeholder="(генерируется системой)" readonly />
+            </div>
+            <div class="field">
+              <label for="st_lastname">Фамилия</label>
+              <input id="st_lastname" type="text" />
+            </div>
+            <div class="field">
+              <label for="st_firstname">Имя</label>
+              <input id="st_firstname" type="text" />
+            </div>
+            <div class="field">
+              <label for="st_middlename">Отчество</label>
+              <input id="st_middlename" type="text" />
+            </div>
+          </div>
+
+          <div class="form__row">
+            <div class="field">
+              <label for="st_birth">Дата рождения</label>
+              <input id="st_birth" type="date" />
+            </div>
+            <div class="field">
+              <label for="st_gender">Пол</label>
+              <select id="st_gender">
+                <option value="">—</option>
+                <option value="m">мужской</option>
+                <option value="f">женский</option>
+              </select>
+            </div>
+            <div class="field field--wide">
+              <label for="st_address">Адрес проживания</label>
+              <input id="st_address" type="text" />
+            </div>
+          </div>
+
+          <div class="form__row">
+            <div class="field">
+              <label for="st_phone">Контактный телефон</label>
+              <input id="st_phone" type="tel" />
+            </div>
+            <div class="field">
+              <label for="st_parent">Законный представитель</label>
+              <input id="st_parent" type="text" />
+            </div>
+            <div class="field">
+              <label for="st_parent_phone">Телефон представителя</label>
+              <input id="st_parent_phone" type="tel" />
+            </div>
+            <div class="field">
+              <label for="st_parent2">Представитель (доп.)</label>
+              <input id="st_parent2" type="text" />
+            </div>
+          </div>
+
+          <hr class="sep" />
+
+          <div class="form__row">
+            <div class="field">
+              <label for="st_class">Класс</label>
+              <select id="st_class"><option value="">—</option></select>
+            </div>
+            <div class="field">
+              <label for="st_year">Учебный год</label>
+              <select id="st_year"><option value="">—</option></select>
+            </div>
+            <div class="field">
+              <label for="st_form">Форма обучения</label>
+              <select id="st_form">
+                <option value="full">очная</option>
+                <option value="part">заочная</option>
+                <option value="family">семейная</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="st_status">Статус</label>
+              <select id="st_status">
+                <option value="active">обучается</option>
+                <option value="enrolled">зачислен</option>
+                <option value="moved">переведен</option>
+                <option value="expelled">отчислен</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form__actions">
+            <button class="btn btn--primary" type="submit">Сохранить</button>
+            <a class="btn btn--ghost" href="/pages/students.html">Отмена</a>
+          </div>
+        </form>
+      </div>
+    </section>
+  </section>
+</main>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<script src="/scripts/theme.js"></script>
+<script src="/scripts/auth.js"></script>
+<script src="/scripts/student-form.js"></script>
+<script src="/scripts/mobile-menu.js"></script>
+<script src="/scripts/role-menu.js"></script>
+</body>
+</html>

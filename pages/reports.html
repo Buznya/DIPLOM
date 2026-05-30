@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <base href="../" />
+  <title>Отчеты - Школа 7 Адм</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+<a class="skip-link" href="#main">Перейти к содержимому</a>
+
+<header class="topbar" role="banner">
+  <div class="container topbar__inner">
+    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Меню" aria-expanded="false">☰</button>
+    <div class="brand">
+      <div class="brand__logo" aria-hidden="true"><img src="/images/sch7.png" alt="Логотип школы"/></div>
+      <div class="brand__text">
+        <div class="brand__title">МБОУ «Школа №7»</div>
+      </div>
+      <button class="theme-toggle" id="themeToggle" aria-label="Переключить тему"></button>
+    </div>
+
+      <div class="user">
+         
+        <div class="user__meta">
+          <div class="user__name">Пользователь</div>
+          <div class="user__role">Роль: —</div>
+        </div>
+        <a class="btn btn--ghost" href="/pages/login.html">Выйти</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="sidebar" role="navigation" aria-label="Навигация">
+    <div class="sidebar__section">
+      <div class="sidebar__caption">Основное</div>
+      <a class="navlink" href="/index.html">Панель</a>
+      <a class="navlink" href="/pages/students.html">Учащиеся</a>
+      <a class="navlink" href="/pages/movement.html">Движение</a>
+      <a class="navlink is-active" href="/pages/reports.html">Отчеты</a>
+    </div>
+    <div class="sidebar__section">
+      <div class="sidebar__caption">Данные</div>
+      <a class="navlink" href="/pages/import-export.html">Импорт / Экспорт</a>
+      <a class="navlink" href="/pages/archive.html">Архив</a>
+    </div>
+    <div class="sidebar__section">
+      <div class="sidebar__caption">Безопасность</div>
+      <a class="navlink" href="/pages/login.html">Страница входа</a>
+      <a class="navlink" href="/pages/auth-log.html">Журнал входов</a>
+    </div>
+    <div class="sidebar__section" id="adminSection" style="display: none;">
+      <div class="sidebar__caption">Администрирование</div>
+      <a class="navlink" href="pages/users.html">👥 Управление пользователями</a>
+    </div>
+  </aside>
+
+  <main id="main" class="content" role="main">
+    <section class="panel">
+      <div class="panel__head">
+        <h1 class="panel__title">Отчетность и аналитика</h1>
+        <div class="panel__subtitle">
+          Отчеты: текущий контингент по классам на дату; движение за период; сводный по параллелям/годам; прибыло/выбыло. 
+        </div>
+      </div>
+
+      <section class="card">
+        <div class="card__head"><h2 class="card__title">Параметры отчета</h2></div>
+        <div class="card__body">
+          <form class="form form--filters" id="reportParams">
+            <div class="form__row">
+              <div class="field">
+                <label for="rep_type">Тип отчета</label>
+                <select id="rep_type" name="type">
+                  <option value="current_by_class">Текущий контингент по классам на дату</option>
+                  <option value="movement_period">Движение за период</option>
+                  <option value="summary_parallel_year">Сводный по параллелям и учебным годам</option>
+                  <option value="arrived_left_period">Прибыло/выбыло за период</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="rep_date">Дата (если требуется)</label>
+                <input id="rep_date" name="as_of" type="date" />
+              </div>
+              <div class="field">
+                <label for="rep_from">Период с</label>
+                <input id="rep_from" name="from" type="date" />
+              </div>
+              <div class="field">
+                <label for="rep_to">Период по</label>
+                <input id="rep_to" name="to" type="date" />
+              </div>
+            </div>
+
+            <div class="form__actions">
+              <button class="btn btn--primary" type="submit">Сформировать</button>
+              <button class="btn btn--secondary" type="button">Печать</button>
+              <button class="btn btn--secondary" type="button">Экспорт CSV</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="card__head card__head--split">
+          <h2 class="card__title">Предпросмотр</h2>
+          <div class="toolbar">
+            <span class="badge">Данные: API</span>
+          </div>
+        </div>
+        <div class="card__body">
+          <div class="table-wrap" role="region" aria-label="Предпросмотр отчета" tabindex="0">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Поле 1</th>
+                  <th>Поле 2</th>
+                  <th>Поле 3</th>
+                  <th>Поле 4</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- тут данные которые из бд грузятся -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </section>
+  </main>
+</div>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<script src="/scripts/theme.js"></script>
+<script src="/scripts/auth.js"></script>
+<script src="/scripts/reports.js"></script>
+<script src="/scripts/mobile-menu.js"></script>
+<script src="/scripts/role-menu.js"></script>
+</body>
+</html>

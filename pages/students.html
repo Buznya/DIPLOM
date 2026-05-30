@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <base href="../" />
+  <title>Учащиеся - Школа 7 Адм</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+<a class="skip-link" href="#main">Перейти к содержимому</a>
+
+<header class="topbar" role="banner">
+  <div class="container topbar__inner">
+    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Меню" aria-expanded="false">☰</button>
+    <div class="brand">
+      <div class="brand__logo" aria-hidden="true"><img src="/images/sch7.png" alt="Логотип школы"/></div>
+      <div class="brand__text">
+        <div class="brand__title">МБОУ «Школа №7»</div>
+      </div>
+      <button class="theme-toggle" id="themeToggle" aria-label="Переключить тему"></button>
+    </div>
+      <div class="user">
+         
+        <div class="user__meta">
+          <div class="user__name">Пользователь</div>
+          <div class="user__role">Роль: —</div>
+        </div>
+        <a class="btn btn--ghost" href="/pages/login.html">Выйти</a>
+      </div>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="sidebar" role="navigation" aria-label="Навигация">
+    <div class="sidebar__section">
+      <div class="sidebar__caption">Основное</div>
+      <a class="navlink" href="/index.html">Панель</a>
+      <a class="navlink is-active" href="/pages/students.html">Учащиеся</a>
+      <a class="navlink" href="/pages/movement.html">Движение</a>
+      <a class="navlink" href="/pages/reports.html">Отчеты</a>
+    </div>
+    <div class="sidebar__section">
+      <div class="sidebar__caption">Данные</div>
+      <a class="navlink" href="/pages/import-export.html">Импорт / Экспорт</a>
+      <a class="navlink" href="/pages/archive.html">Архив</a>
+    </div>
+    <div class="sidebar__section">
+      <div class="sidebar__caption">Безопасность</div>
+      <a class="navlink" href="/pages/login.html">Страница входа</a>
+      <a class="navlink" href="/pages/auth-log.html">Журнал входов</a>
+    </div>
+    <div class="sidebar__section" id="adminSection" style="display: none;">
+      <div class="sidebar__caption">Администрирование</div>
+      <a class="navlink" href="pages/users.html">👥 Управление пользователями</a>
+    </div>
+  </aside>
+
+  <main id="main" class="content" role="main">
+    <section class="panel">
+      <div class="panel__head">
+        <h1 class="panel__title">Учащиеся</h1>
+        <div class="panel__subtitle">Операции: создание/просмотр/редактирование/удаление карточек, поиск и фильтрация. </div>
+      </div>
+
+      <section class="card">
+        <div class="card__head"><h2 class="card__title">Фильтры</h2></div>
+        <div class="card__body">
+          <form class="form form--filters">
+            <div class="form__row">
+              <div class="field">
+                <label for="s_query">Поиск</label>
+                <input id="s_query" type="search" placeholder="ФИО/класс/ID" />
+              </div>
+              <div class="field">
+                <label for="s_class">Класс</label>
+                <select id="s_class"><option value="">Все</option></select>
+              </div>
+              <div class="field">
+                <label for="s_year">Учебный год</label>
+                <select id="s_year"><option value="">Все</option></select>
+              </div>
+              <div class="field">
+                <label for="s_status">Статус</label>
+                <select id="s_status">
+                  <option value="">Все</option>
+                  <option value="active">обучается</option>
+                  <option value="moved">переведен</option>
+                  <option value="expelled">отчислен</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form__actions">
+              <button class="btn btn--primary" type="submit">Применить</button>
+              <button class="btn btn--ghost" type="reset">Сброс</button>
+              <button class="btn btn--secondary" type="button">Сохранить фильтр</button>
+              <a class="btn btn--secondary" href="/pages/student-form.html">+ Добавить</a>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="card__head card__head--split">
+          <h2 class="card__title">Список</h2>
+          <div class="toolbar">
+            <button class="btn btn--secondary" type="button">Экспорт CSV</button>
+            <button class="btn btn--secondary" type="button">Экспорт Excel</button>
+          </div>
+        </div>
+
+        <div class="card__body">
+          <div class="table-wrap" role="region" aria-label="Таблица учащихся" tabindex="0">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>ФИО</th>
+                  <th>Дата рождения</th>
+                  <th>Класс</th>
+                  <th>Уч. год</th>
+                  <th>Форма</th>
+                  <th>Статус</th>
+                  <th class="cell-actions">Действия</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- тут данные которые из бд грузятся -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </section>
+  </main>
+</div>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<script src="/scripts/theme.js"></script>
+<script src="/scripts/auth.js"></script>
+<script src="/scripts/students.js"></script>
+<script src="/scripts/mobile-menu.js"></script>
+<script src="/scripts/role-menu.js"></script>
+</body>
+</html>

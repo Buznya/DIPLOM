@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Панель - Школа 7 Адм</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+<a class="skip-link" href="#main">Перейти к содержимому</a>
+
+<header class="topbar" role="banner">
+  <div class="container topbar__inner">
+    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Меню" aria-expanded="false">☰</button>
+    <div class="brand">
+      <div class="brand__logo" aria-hidden="true"><img src="images/sch7.png" alt="Логотип школы"/></div>
+      <div class="brand__text">
+        <div class="brand__title">МБОУ «Школа №7»</div>
+      </div>
+      <button class="theme-toggle" id="themeToggle" aria-label="Переключить тему"></button>
+    </div>
+    <div class="user">
+      <div class="user__meta">
+        <div class="user__name">Пользователь</div>
+        <div class="user__role">Роль: —</div>
+      </div>
+      <a class="btn btn--ghost" href="pages/login.html" id="logoutBtn">Выйти</a>
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="sidebar" role="navigation" aria-label="Навигация">
+    <div class="sidebar__section">
+      <div class="sidebar__caption">Основное</div>
+      <a class="navlink is-active" href="index.html">Панель</a>
+      <a class="navlink" href="pages/students.html">Учащиеся</a>
+      <a class="navlink" href="pages/movement.html">Движение</a>
+      <a class="navlink" href="pages/reports.html">Отчеты</a>
+    </div>
+    <div class="sidebar__section">
+      <div class="sidebar__caption">Данные</div>
+      <a class="navlink" href="pages/import-export.html" id="importExportLink">Импорт / Экспорт</a>
+      <a class="navlink" href="pages/archive.html">Архив</a>
+    </div>
+    <div class="sidebar__section">
+      <div class="sidebar__caption">Безопасность</div>
+      <a class="navlink" href="pages/login.html">Страница входа</a>
+      <a class="navlink" href="pages/auth-log.html" id="authLogLink">Журнал входов</a>
+    </div>
+    <div class="sidebar__section" id="adminSection" style="display: none;">
+      <div class="sidebar__caption">Администрирование</div>
+      <a class="navlink" href="pages/users.html">👥 Управление пользователями</a>
+    </div>
+  </aside>
+
+  <main id="main" class="content" role="main">
+    <section class="panel">
+      <div class="panel__head">
+        <h1 class="panel__title">Панель управления</h1>
+        <div class="panel__subtitle">Быстрые переходы к основным модулям системы.</div>
+      </div>
+
+      <div class="grid grid--3" id="dashboardCards">
+        <article class="card">
+          <div class="card__head"><h2 class="card__title">Учащиеся</h2></div>
+          <div class="card__body">
+            <p class="muted">Карточки учащихся, поиск, фильтры, группировка.</p>
+          </div>
+          <div class="card__foot">
+            <a class="btn btn--primary" href="pages/students.html">Открыть</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card__head"><h2 class="card__title">Движение</h2></div>
+          <div class="card__body">
+            <p class="muted">Зачисление, перевод, отчисление с приказами и датами.</p>
+          </div>
+          <div class="card__foot">
+            <a class="btn btn--primary" href="pages/movement.html">Открыть</a>
+          </div>
+        </article>
+
+        <article class="card" id="cardReports">
+          <div class="card__head"><h2 class="card__title">Отчеты</h2></div>
+          <div class="card__body">
+            <p class="muted">Отчеты по контингенту и движению.</p>
+          </div>
+          <div class="card__foot">
+            <a class="btn btn--primary" href="pages/reports.html">Открыть</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+<!-- Модалка ошибки доступа -->
+<div id="accessDeniedModal" class="modal" style="display: none;">
+  <div class="modal-content">
+    <h3>⚠️ Доступ запрещён</h3>
+    <p>У вас недостаточно прав для просмотра этой страницы.</p>
+    <div class="modal-buttons">
+      <button class="btn btn--primary" id="accessDeniedOkBtn">На главную</button>
+    </div>
+  </div>
+</div>
+
+<script src="/scripts/theme.js"></script>
+<script src="/scripts/auth.js"></script>
+<script src="/scripts/dashboard.js"></script>
+<script src="/scripts/mobile-menu.js"></script>
+<script src="/scripts/role-menu.js"></script>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <base href="../" />
+  <title>Управление пользователями - Школа 7 Адм</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/users.css" />
+</head>
+<body>
+<a class="skip-link" href="#main">Перейти к содержимому</a>
+
+<header class="topbar" role="banner">
+  <div class="container topbar__inner">
+    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Меню" aria-expanded="false">☰</button>
+    <div class="brand">
+      <div class="brand__logo" aria-hidden="true"><img src="images/sch7.png" alt="Логотип школы"/></div>
+      <div class="brand__text">
+        <div class="brand__title">МБОУ «Школа №7»</div>
+      </div>
+      <button class="theme-toggle" id="themeToggle" aria-label="Переключить тему"></button>
+    </div>
+    <div class="user">
+      <div class="user__meta">
+        <div class="user__name">Пользователь</div>
+        <div class="user__role">Роль: —</div>
+      </div>
+      <a class="btn btn--ghost" href="pages/login.html" id="logoutBtn">Выйти</a>
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="sidebar" role="navigation" aria-label="Навигация">
+    <div class="sidebar__section">
+      <div class="sidebar__caption">Основное</div>
+      <a class="navlink" href="index.html">Панель</a>
+      <a class="navlink" href="pages/students.html">Учащиеся</a>
+      <a class="navlink" href="pages/movement.html">Движение</a>
+      <a class="navlink" href="pages/reports.html">Отчеты</a>
+    </div>
+    <div class="sidebar__section">
+      <div class="sidebar__caption">Данные</div>
+      <a class="navlink" href="pages/import-export.html">Импорт / Экспорт</a>
+      <a class="navlink" href="pages/archive.html">Архив</a>
+    </div>
+    <div class="sidebar__section">
+      <div class="sidebar__caption">Безопасность</div>
+      <a class="navlink" href="pages/login.html">Страница входа</a>
+      <a class="navlink" href="pages/auth-log.html">Журнал входов</a>
+    </div>
+    <div class="sidebar__section" id="adminSection" style="display: none;">
+      <div class="sidebar__caption">Администрирование</div>
+      <a class="navlink" href="pages/users.html">👥 Управление пользователями</a>
+    </div>
+  </aside>
+
+  <main id="main" class="content" role="main">
+    <section class="panel">
+      <div class="panel__head">
+        <h1 class="panel__title">👥 Управление пользователями</h1>
+        <div class="panel__subtitle">Добавление, редактирование и удаление учётных записей.</div>
+      </div>
+
+      <!-- Форма добавления -->
+      <section class="card">
+        <div class="card__head"><h2 class="card__title">➕ Добавить пользователя</h2></div>
+        <div class="card__body">
+          <form id="addUserForm" class="form">
+            <div class="form__row">
+              <div class="field">
+                <label for="user_login">Логин *</label>
+                <input type="text" id="user_login" placeholder="например: ivanov" required />
+              </div>
+              <div class="field">
+                <label for="user_password">Пароль *</label>
+                <input type="text" id="user_password" placeholder="минимум 3 символа" required />
+              </div>
+              <div class="field">
+                <label for="user_role">Роль *</label>
+                <select id="user_role" required>
+                  <option value="Работник">Работник</option>
+                  <option value="Администратор">Администратор</option>
+                  <option value="Директор">Директор</option>
+                  <option value="Заведующая">Заведующая</option>
+                </select>
+              </div>
+              <div class="field">
+                <button class="btn btn--primary" type="submit" style="margin-top: 24px;">Создать</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- Таблица пользователей -->
+      <section class="card">
+        <div class="card__head card__head--split">
+          <h2 class="card__title">📋 Список пользователей</h2>
+          <div class="toolbar">
+            <span class="badge">всего <span id="usersCount">0</span></span>
+          </div>
+        </div>
+        <div class="card__body">
+          <div class="table-wrap">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Логин</th>
+                  <th>Роль</th>
+                  <th>Дата создания</th>
+                  <th class="cell-actions">Действия</th>
+                </tr>
+              </thead>
+              <tbody id="usersTableBody">
+                <tr><td colspan="5" style="text-align: center; padding: 40px;">Загрузка...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </section>
+  </main>
+</div>
+
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+<!-- Модалка подтверждения удаления -->
+<div id="confirmModal" class="modal">
+  <div class="modal-content">
+    <h3>⚠️ Подтверждение удаления</h3>
+    <p id="confirmMessage">Вы уверены, что хотите удалить этого пользователя?</p>
+    <div class="modal-buttons">
+      <button class="btn btn--secondary" id="modalCancelBtn">Отмена</button>
+      <button class="btn btn--danger" id="modalConfirmBtn">Удалить</button>
+    </div>
+  </div>
+</div>
+
+<!-- Модалка запрета доступа -->
+<div id="accessDeniedModal" class="modal">
+  <div class="modal-content">
+    <h3>🚫 Доступ запрещён</h3>
+    <p>У вас недостаточно прав для просмотра этой страницы.</p>
+    <div class="modal-buttons">
+      <button class="btn btn--primary" id="accessDeniedOkBtn">На главную</button>
+    </div>
+  </div>
+</div>
+
+<script src="/scripts/theme.js"></script>
+<script src="/scripts/auth.js"></script>
+<script src="/scripts/role-menu.js"></script>
+<script src="/scripts/admin-users.js"></script>
+<script src="/scripts/mobile-menu.js"></script>
+</body>
+</html>
